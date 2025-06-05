@@ -1,0 +1,39 @@
+# Add users
+curl -X POST http://localhost:7070/users/register \
+  -H "Content-Type: application/json" \
+  -d '{
+        "name": "Alice",
+        "email": "alice@example.com",
+        "age": 25,
+        "sex": "FEMALE"
+      }'
+
+curl -X POST http://localhost:7070/users/register \
+  -H "Content-Type: application/json" \
+  -d '{
+        "name": "Adam",
+        "email": "adam@example.com",
+        "age": 20,
+        "sex": "MALE"
+      }'
+
+# Get all users
+curl http://localhost:7070/users
+
+# Fetch User by UUID
+curl http://localhost:7070/users/{uuid}
+#By Email
+curl "http://localhost:7070/users/lookup?email=alice@example.com"
+
+# Update a User’s Score by UUID
+curl -X PUT "http://localhost:7070/users/{uuid}?score=42"
+
+# Error handling
+curl "http://localhost:7070/users/lookup?email=not-an-email"
+curl "http://localhost:7070/users/lookup"
+
+# List top users
+curl "http://localhost:7070/users/top"
+
+
+
