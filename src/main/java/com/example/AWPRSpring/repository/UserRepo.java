@@ -11,4 +11,5 @@ public interface UserRepo extends JpaRepository<User, UUID> {
     List<User> findTop10ByOrderByScoreDesc();
     List<User> findTop10ByOrderByScoreAsc();
     Optional<User> findByName(String name);
+    Optional<User> findByEmail(String name);
 }

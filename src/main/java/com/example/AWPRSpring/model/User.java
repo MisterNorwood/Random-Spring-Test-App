@@ -2,6 +2,7 @@ package com.example.AWPRSpring.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,14 +20,35 @@ public class User extends TimeStamped {
     private UUID uuid;
 
     @Column(nullable = false)
+    @Setter
     private String name;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Setter
+    private Sex sex;
+
+    @Column(nullable = false)
+    @Setter
+    private short age;
 
     @Column(nullable = false)
     @Setter
     private int score;
 
-    public User(String name) {
-        this.uuid = UUID.randomUUID();
+    @Column(nullable = false, unique = true)
+    @Setter
+    private String email;
+
+    public User(String name, Sex sex, short age,  String email) {
         this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.email = email;
+    }
+
+    public static enum Sex {
+        MALE,
+        FEMALE,
     }
 }
